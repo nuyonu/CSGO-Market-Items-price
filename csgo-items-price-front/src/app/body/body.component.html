@@ -1,0 +1,66 @@
+<div class="mx-3 mt-1">
+    <div class="d-flex justify-content-center">
+        <mat-form-field class="example-form-field">
+            <mat-label>CSGO Item name</mat-label>
+            <input matInput type="text" [(ngModel)]="value" (keydown.enter)="searchItems($event)">
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value='';dataItems = [];">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+    </div>
+    <div class="d-flex" *ngIf="dataItems.length != 0">
+        <table mat-table [dataSource]="dataSource" class="w-100 mat-elevation-z8">
+
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let element"><img class="picture" src="{{element.image}}"></td>
+              </ng-container>
+          
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="exterior">
+              <th mat-header-cell *matHeaderCellDef> Exterior </th>
+              <td mat-cell *matCellDef="let element"> {{element.exterior}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="selection.toggle(row)">
+            </tr>
+          </table>
+    </div>
+    <div class="d-flex justify-content-center mt-1">
+        <button mat-raised-button color="accent" (click)="saveData()">Save</button>
+    </div>
+    <app-all-stored-items></app-all-stored-items>
+</div>

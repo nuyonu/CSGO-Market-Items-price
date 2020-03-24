@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+
+html, body { 
+    height: 100%;
+    width: 100%;
+    background: #303030;
+    color: white;
+}
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.w-100 {
+    width: 100%;
+}
+
+$rem-1: 1rem;
+$rem-2: 2rem;
+$rem-3: 3rem;
+$rem-4: 4rem;
+$rem-5: 5rem;
+
+$rem-sizes: 1 $rem-1, 
+        2 $rem-2, 
+        3 $rem-3, 
+        4 $rem-4, 
+        5 $rem-5;
+
+@each $size, $rem-size in $rem-sizes {
+    .mx-#{$size} {
+        margin: 0 $rem-size 0 $rem-size;
+    }
+
+    .mt-#{$size} {
+        margin-top: $rem-size!important;
+    }
+
+    .mb-#{$size} {
+        margin-bottom: $rem-size!important;
+    }
+
+    .ml-#{$size} {
+        margin-left: $rem-size!important;
+    }
+
+    .mr-#{$size} {
+        margin-right: $rem-size!important;
+    }
+
+    .my-#{$size} {
+        margin: $rem-size 0 $rem-size 0;
+    }
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
